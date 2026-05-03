@@ -1,0 +1,10 @@
+# Per RFC 9116 — https://securitytxt.org
+# This file helps security researchers report vulnerabilities responsibly.
+
+Contact: mailto:security@yourname.dev
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, hi
+Canonical: https://yourname.dev/.well-known/security.txt
+
+# If you find a security issue with this site or any of the apps / services I maintain,
+# please email me first before disclosing publicly. I respond within 24 hours.

@@ -1,0 +1,24 @@
+/* TEAM */
+
+Developer / Designer: Your Name
+Site: https://yourname.dev
+Location: Lucknow, India
+Twitter: @yourname
+GitHub: @yourname
+
+
+/* THANKS */
+
+Next.js team for the framework
+Vercel for hosting
+The open-source community
+
+
+/* SITE */
+
+Standards: HTML5, CSS3, ES2022, TypeScript
+Components: React, Tailwind CSS
+Runtime: Next.js 14 App Router
+Hosting: Vercel Edge Network
+IDE: VS Code, Claude Code
+Last update: 2026
