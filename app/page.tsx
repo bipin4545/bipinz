@@ -15,7 +15,7 @@ import { Contact } from '@/components/sections/Contact';
 import { SectionOrnament } from '@/components/shared';
 
 export const metadata: Metadata = buildMetadata({
-  title: `${site.name} — AI-Powered Web Developer & Automation Engineer`,
+  title: `${site.name} — AI-Powered Web Developer & Automation Engineer · bipinz`,
   description: site.description,
   path: '/',
 });

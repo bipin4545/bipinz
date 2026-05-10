@@ -44,8 +44,8 @@ const caveatSignature = Caveat({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — AI-Powered Web Developer & Automation Engineer`,
-    template: `%s · ${site.name}`,
+    default: `${site.name} — AI-Powered Web Developer & Automation Engineer · bipinz`,
+    template: `%s · bipinz`,
   },
   description: site.description,
   applicationName: site.name,
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
   // X link previews (Next.js field name is still `twitter`)
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} — AI-Powered Web Developer`,
+    title: `${site.name} · bipinz — AI-Powered Web Developer`,
     description: site.description,
     creator: '@bipinz',
     site: '@bipinz',
