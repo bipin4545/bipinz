@@ -28,7 +28,7 @@ const instrumentSerif = Instrument_Serif({
   variable: '--font-serif',
   weight: '400',
   style: 'italic',
-  display: 'swap',
+  display: 'optional',
   preload: false,
 });
 

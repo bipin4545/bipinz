@@ -621,6 +621,15 @@ body {
     transform: translateY(0);
   }
 }
+/* Hero: LCP elements must start visible — only animate transform, not opacity */
+.hero-stagger > *:nth-child(-n+3) {
+  opacity: 1;
+  animation-name: rise-transform;
+}
+@keyframes rise-transform {
+  from { transform: translateY(8px); }
+  to { transform: translateY(0); }
+}
 @media (prefers-reduced-motion: reduce) {
   .stagger > * {
     opacity: 1;
@@ -1857,6 +1866,11 @@ body::after {
 /* ============ ALTERNATING SECTION BACKGROUNDS (LIGHT MODE) ============ */
 main > section {
   position: relative;
+}
+/* Defer rendering of sections beyond 3rd — saves main thread work on load */
+main > section:nth-of-type(n+4) {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
 }
 [data-theme='light'] main > section:nth-of-type(even) {
   background: var(--section-alt);

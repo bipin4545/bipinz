@@ -68,7 +68,7 @@ export function Hero() {
       <HeroAtmosphere />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 pt-20 sm:pt-28 pb-16 text-center">
-        <div className="stagger">
+        <div className="stagger hero-stagger">
           {/* Mobile: one tight row + sans. sm+: mono row with middots (no stacked divider). */}
           <div
             className="pill mx-auto flex w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-full px-2.5 py-1.5 sm:inline-flex sm:flex-nowrap sm:gap-2.5 sm:px-3 sm:py-1.5 md:px-[14px]"

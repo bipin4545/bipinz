@@ -4,9 +4,8 @@ import { buildMetadata } from '@/lib/seo';
 import { site } from '@/lib/site';
 import { JsonLd } from '@/components/JsonLd';
 import { Hero } from '@/components/sections/Hero';
+import { SocialProof } from '@/components/sections/SocialProof';
 import { SectionOrnament } from '@/components/shared';
-
-const SocialProof = dynamic(() => import('@/components/sections/SocialProof').then(m => ({ default: m.SocialProof })));
 const Services = dynamic(() => import('@/components/sections/Services').then(m => ({ default: m.Services })));
 const CaseStudies = dynamic(() => import('@/components/sections/CaseStudies').then(m => ({ default: m.CaseStudies })));
 const Process = dynamic(() => import('@/components/sections/Process').then(m => ({ default: m.Process })));
