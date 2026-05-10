@@ -15,27 +15,27 @@ export function HugeBgNumber({ children, style, className = '' }: HugeBgNumberPr
     if (!ref.current) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
+    // Only attach scroll listener when element is near viewport
+    const io = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      let ticking = false;
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
         requestAnimationFrame(() => {
           if (!ref.current) return;
           const rect = ref.current.getBoundingClientRect();
-          const viewportCenter = window.innerHeight / 2;
-          const elCenter = rect.top + rect.height / 2;
-          const distance = (elCenter - viewportCenter) / window.innerHeight;
-          const clamped = Math.max(-1, Math.min(1, distance));
-          const translateY = clamped * -30;
-          ref.current.style.transform = `translateY(${translateY}px)`;
+          const distance = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+          ref.current.style.transform = `translateY(${Math.max(-1, Math.min(1, distance)) * -30}px)`;
           ticking = false;
         });
-        ticking = true;
-      }
-    };
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      io.disconnect();
+    }, { rootMargin: '200px' });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    io.observe(ref.current);
+    return () => io.disconnect();
   }, []);
 
   return (

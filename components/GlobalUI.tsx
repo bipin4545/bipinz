@@ -141,29 +141,24 @@ export function GlobalUI() {
     }
   }, [cmdOpen]);
 
-  // Cursor glow
+  // Cursor glow — RAF-throttled mousemove (one DOM write per frame max)
   useEffect(() => {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    let x = 0, y = 0, tx = 0, ty = 0;
+    let pending = false;
+    let cx = 0, cy = 0;
     const move = (e: MouseEvent) => {
-      tx = e.clientX;
-      ty = e.clientY;
+      cx = e.clientX; cy = e.clientY;
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        if (glowRef.current) {
+          glowRef.current.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+        }
+        pending = false;
+      });
     };
-    let raf = 0;
-    const loop = () => {
-      x += (tx - x) * 0.15;
-      y += (ty - y) * 0.15;
-      if (glowRef.current) {
-        glowRef.current.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-      }
-      raf = requestAnimationFrame(loop);
-    };
-    window.addEventListener('mousemove', move);
-    raf = requestAnimationFrame(loop);
-    return () => {
-      window.removeEventListener('mousemove', move);
-      cancelAnimationFrame(raf);
-    };
+    window.addEventListener('mousemove', move, { passive: true });
+    return () => window.removeEventListener('mousemove', move);
   }, []);
 
   // Scroll progress + scroll top

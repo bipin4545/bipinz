@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { buildMetadata } from '@/lib/seo';
 import { site } from '@/lib/site';
 import { JsonLd } from '@/components/JsonLd';
 import { Hero } from '@/components/sections/Hero';
-import { SocialProof } from '@/components/sections/SocialProof';
-import { Services } from '@/components/sections/Services';
-import { CaseStudies } from '@/components/sections/CaseStudies';
-import { Process } from '@/components/sections/Process';
-import { Testimonials } from '@/components/sections/Testimonials';
-import { About } from '@/components/sections/About';
-import { BlogPreview } from '@/components/sections/BlogPreview';
-import { Guarantees, FAQSection } from '@/components/sections/GuaranteesFAQ';
-import { Contact } from '@/components/sections/Contact';
 import { SectionOrnament } from '@/components/shared';
+
+const SocialProof = dynamic(() => import('@/components/sections/SocialProof').then(m => ({ default: m.SocialProof })));
+const Services = dynamic(() => import('@/components/sections/Services').then(m => ({ default: m.Services })));
+const CaseStudies = dynamic(() => import('@/components/sections/CaseStudies').then(m => ({ default: m.CaseStudies })));
+const Process = dynamic(() => import('@/components/sections/Process').then(m => ({ default: m.Process })));
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials').then(m => ({ default: m.Testimonials })));
+const About = dynamic(() => import('@/components/sections/About').then(m => ({ default: m.About })));
+const BlogPreview = dynamic(() => import('@/components/sections/BlogPreview').then(m => ({ default: m.BlogPreview })));
+const Guarantees = dynamic(() => import('@/components/sections/GuaranteesFAQ').then(m => ({ default: m.Guarantees })));
+const FAQSection = dynamic(() => import('@/components/sections/GuaranteesFAQ').then(m => ({ default: m.FAQSection })));
+const Contact = dynamic(() => import('@/components/sections/Contact').then(m => ({ default: m.Contact })));
 
 export const metadata: Metadata = buildMetadata({
   title: `${site.name} — AI-Powered Web Developer & Automation Engineer · bipinz`,

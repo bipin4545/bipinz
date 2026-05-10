@@ -26,6 +26,10 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
 
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
   // Trailing slash convention — pick one. false = /work (no trailing slash).
   // IMPORTANT: Consistency across links, sitemap, and canonical URLs is critical for SEO.
   trailingSlash: false,
