@@ -71,7 +71,6 @@ const nextConfig = {
   // Experimental optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', 'simple-icons'],
-    inlineCss: true,
   },
 };
 
