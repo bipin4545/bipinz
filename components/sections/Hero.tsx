@@ -27,29 +27,21 @@ function MarqueeTrack() {
   );
 }
 
-const blobInner = 'rounded-full motion-reduce:animate-none';
-
-/** Pure CSS atmosphere — no overflow clip on this layer (section uses overflow-y visible). */
+/** Pure CSS atmosphere — static blobs, no animation (blur filter animation is extremely expensive) */
 function HeroAtmosphere() {
   return (
-    <div className="pointer-events-none absolute inset-0 -z-10 min-h-full" aria-hidden>
-      {/* Violet — left-1/4 anchor (zero box), blob centered on point so glow stays in viewport */}
+    <div className="pointer-events-none absolute inset-0 -z-10 min-h-full" aria-hidden style={{ contain: 'layout style paint' }}>
+      {/* Violet */}
       <div className="absolute left-1/4 top-[14%] h-0 w-0">
-        <div
-          className={`absolute left-1/2 top-1/2 h-[min(22rem,46vw)] w-[min(22rem,46vw)] -translate-x-1/2 -translate-y-1/2 sm:h-[min(26rem,48vw)] sm:w-[min(26rem,48vw)] md:h-[28rem] md:w-[28rem] ${blobInner} bg-violet-500/10 blur-[100px] dark:bg-violet-500/20 sm:blur-[120px] md:blur-[140px] animate-hero-blob-1`}
-        />
+        <div className="absolute left-1/2 top-1/2 h-[min(22rem,46vw)] w-[min(22rem,46vw)] -translate-x-1/2 -translate-y-1/2 rounded-full md:h-[28rem] md:w-[28rem] bg-violet-500/10 blur-[60px] dark:bg-violet-500/18" />
       </div>
-      {/* Purple — right-1/4 bottom-0 per spec; zero-size anchor avoids overflow clip + translate conflicts */}
+      {/* Purple */}
       <div className="absolute bottom-0 right-1/4 h-0 w-0">
-        <div
-          className={`absolute left-1/2 top-1/2 h-[min(22rem,44vw)] w-[min(22rem,44vw)] -translate-x-1/2 -translate-y-1/2 sm:h-[min(26rem,46vw)] sm:w-[min(26rem,46vw)] md:h-[26rem] md:w-[26rem] ${blobInner} bg-purple-600/8 blur-[100px] dark:bg-purple-600/15 sm:blur-[125px] md:blur-[150px] animate-hero-blob-2`}
-        />
+        <div className="absolute left-1/2 top-1/2 h-[min(22rem,44vw)] w-[min(22rem,44vw)] -translate-x-1/2 -translate-y-1/2 rounded-full md:h-[26rem] md:w-[26rem] bg-purple-600/8 blur-[60px] dark:bg-purple-600/13" />
       </div>
-      {/* Indigo — horizontal center */}
-      <div className="absolute left-1/2 top-[26%] h-0 w-0 -translate-x-1/2 sm:top-[30%]">
-        <div
-          className={`absolute left-1/2 top-1/2 h-[min(24rem,50vw)] w-[min(24rem,50vw)] -translate-x-1/2 -translate-y-1/2 sm:h-[min(28rem,52vw)] sm:w-[min(28rem,52vw)] md:h-[30rem] md:w-[30rem] ${blobInner} bg-indigo-500/6 blur-[110px] dark:bg-indigo-500/10 sm:blur-[135px] md:blur-[150px] animate-hero-blob-3`}
-        />
+      {/* Indigo */}
+      <div className="absolute left-1/2 top-[26%] h-0 w-0 -translate-x-1/2">
+        <div className="absolute left-1/2 top-1/2 h-[min(24rem,50vw)] w-[min(24rem,50vw)] -translate-x-1/2 -translate-y-1/2 rounded-full md:h-[30rem] md:w-[30rem] bg-indigo-500/6 blur-[60px] dark:bg-indigo-500/10" />
       </div>
 
       {/* Readability: softer center in dark so center blob stays visible; light stays gentle */}
