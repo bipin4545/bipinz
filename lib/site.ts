@@ -7,8 +7,8 @@ export const site = {
   tagline: 'Next.js · AI · Automation',
   description:
     'I build AI-powered web platforms that help SaaS companies ship faster and automate growth. Next.js, TypeScript, AI agents, n8n automation.',
-  url: 'https://yourname.dev',
-  email: 'hello@yourname.dev',
+  url: 'https://bipinz.com',
+  email: 'hello@bipinz.com',
   location: 'Lucknow, India',
   timezone: 'IST · UTC+5:30',
   availability: 'Available for 2 projects · Q2 2026',
@@ -18,10 +18,10 @@ export const site = {
   /** Hero pill — keep very short so one line fits ~320px */
   responseTimeShort: '~12h',
   /** WhatsApp Business: country + full number, digits only (no + or spaces). Example India: 9198xxxxxxxx */
-  whatsappNumber: '919876543210',
+  whatsappNumber: '916283887889',
   social: {
     github: 'https://github.com/yourname',
-    linkedin: 'https://linkedin.com/in/yourname',
+    linkedin: 'https://www.linkedin.com/in/bipinz',
     calcom: 'https://cal.com/yourname',
   },
   stats: {

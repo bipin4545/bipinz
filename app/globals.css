@@ -157,10 +157,14 @@ body {
 
 /* ============ NAV ============ */
 .nav-glass {
-  background: rgb(from var(--background) r g b / 0.65);
+  background: rgb(from var(--background) r g b / 0.88);
   border-bottom: 1px solid rgb(from var(--border) r g b / 0.7);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+.nav-glass.nav-scrolled {
+  background: rgb(from var(--background) r g b / 0.92);
+  border-bottom-color: rgb(from var(--border) r g b / 0.9);
 }
 .logo-box {
   width: 36px;
@@ -632,6 +636,33 @@ body {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--muted);
+}
+
+.tech-pill-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 20px 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 0.18s, background 0.18s, color 0.18s;
+  letter-spacing: 0.01em;
+}
+
+.tech-pill-lg:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 6%, var(--surface));
+}
+
+[data-theme='light'] .tech-pill-lg {
+  background: var(--surface);
+  box-shadow: 0 1px 3px rgba(10, 10, 25, 0.06), 0 4px 12px -4px rgba(10, 10, 25, 0.08);
 }
 
 /* ============ SERVICE ROWS ============ */
@@ -1344,7 +1375,6 @@ body {
   gap: 6px;
 }
 .cmdk-trigger {
-  display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 0 12px;
@@ -1713,9 +1743,14 @@ body::after {
   box-shadow: 0 2px 4px rgba(10, 10, 25, 0.05), 0 8px 20px -6px rgba(103, 61, 230, 0.15);
 }
 [data-theme='light'] .nav-glass {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.92);
   border-bottom-color: rgba(226, 226, 234, 0.8);
   box-shadow: 0 1px 0 rgba(10, 10, 25, 0.03);
+}
+[data-theme='light'] .nav-glass.nav-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(226, 226, 234, 0.95);
+  box-shadow: 0 1px 3px rgba(10, 10, 25, 0.08);
 }
 [data-theme='light'] .btn-primary {
   box-shadow: 0 1px 2px rgba(91, 47, 218, 0.25), 0 8px 20px -6px rgba(91, 47, 218, 0.35);
@@ -1737,6 +1772,7 @@ body::after {
   box-shadow: 0 2px 4px rgba(10, 10, 25, 0.05), 0 6px 14px -4px rgba(10, 10, 25, 0.08);
 }
 [data-theme='light'] .tech-pill,
+[data-theme='light'] .tech-pill-lg,
 [data-theme='light'] .pill {
   background: var(--surface);
   box-shadow: 0 1px 2px rgba(10, 10, 25, 0.03);

@@ -63,7 +63,7 @@ export function buildMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      creator: '@yourname',
+      creator: '@bipinz',
     },
   };
 }

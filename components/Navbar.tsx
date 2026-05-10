@@ -1,10 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { useTheme } from '@wrksz/themes/client';
 import { Menu, Moon, Search, Sun, X, ArrowRight } from 'lucide-react';
 import { site } from '@/lib/site';
+import { LogoImage } from '@/components/LogoImage';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -17,13 +19,24 @@ const navLinks = [
 
 export function Navbar() {
   const { resolvedTheme, setTheme } = useTheme();
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleTheme = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   const openCmdK = () => window.dispatchEvent(new CustomEvent('open-cmdk'));
 
   return (
-    <header className="nav-glass sticky top-0 z-50 w-full overflow-x-hidden">
+    <header className={`nav-glass sticky top-0 z-50 w-full overflow-x-hidden transition-all duration-300${scrolled ? ' nav-scrolled' : ''}`}>
       <div className="mx-auto max-w-6xl px-3 sm:px-6">
         <div className="grid h-16 min-w-0 grid-cols-[1fr_auto] items-center gap-2 sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-3 lg:gap-6">
           <Link
@@ -31,22 +44,22 @@ export function Navbar() {
             className="flex min-w-0 justify-self-start overflow-hidden sm:max-w-none"
             aria-label="Home"
           >
-            <div className="logo-box shrink-0">{site.initial}</div>
-            <div className="hidden min-w-0 leading-tight sm:block">
-              <div className="truncate text-sm font-semibold tracking-tight">{site.name}</div>
-              <div className="truncate text-xs text-[var(--muted)]">{site.tagline}</div>
-            </div>
+            <LogoImage />
           </Link>
 
           <nav className="hidden min-w-0 items-center justify-center gap-3 text-sm text-[var(--muted)] md:flex lg:gap-8">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="shrink-0 hover:text-[var(--text)] transition">
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`shrink-0 transition hover:text-[var(--text)] ${isActive(link.href) ? 'font-semibold text-[var(--text)]' : ''}`}
+              >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center justify-self-end justify-end gap-1 sm:gap-2">
+          <div className="flex shrink-0 items-center justify-self-end justify-end gap-3 sm:gap-4">
             <button onClick={openCmdK} className="cmdk-trigger hidden md:inline-flex" aria-label="Open command palette">
               <Search className="h-3.5 w-3.5" />
               <span className="hidden lg:inline">Search</span>
@@ -57,7 +70,7 @@ export function Navbar() {
             </button>
             <Link
               href="/contact"
-              className="btn btn-accent hidden h-10 shrink-0 px-3 text-sm sm:inline-flex sm:px-4 md:max-lg:px-3"
+              className="btn btn-accent hidden h-10 shrink-0 px-5 text-sm sm:inline-flex sm:px-6 md:max-lg:px-5"
             >
               <span className="max-md:hidden">Book a Call</span>
               <span className="md:hidden">Book</span>
@@ -82,7 +95,7 @@ export function Navbar() {
           <div className="absolute inset-0 flex min-h-0 flex-col bg-[var(--background)]/95 backdrop-blur-md">
             <div className="mx-auto flex h-16 w-full max-w-6xl shrink-0 items-center justify-between px-4 sm:px-6">
               <div className="flex items-center gap-3">
-                <div className="logo-box">{site.initial}</div>
+                <LogoImage />
                 <div className="text-sm font-semibold">Menu</div>
               </div>
               <button onClick={() => setMobileOpen(false)} className="btn btn-ghost h-10 w-10 p-0" aria-label="Close menu">
@@ -93,7 +106,7 @@ export function Navbar() {
               <div className="mx-auto max-w-6xl px-4 pb-10 pt-2 sm:px-6">
                 <div className="grid gap-3">
                   {navLinks.map((link) => (
-                    <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="card card-hover px-5 py-4 text-lg font-semibold">
+                    <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className={`card card-hover px-5 py-4 text-lg font-semibold ${isActive(link.href) ? 'text-[var(--primary)]' : ''}`}>
                       {link.label}
                     </Link>
                   ))}

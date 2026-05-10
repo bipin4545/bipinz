@@ -37,7 +37,7 @@ const caveatSignature = Caveat({
   subsets: ['latin'],
   variable: '--font-signature',
   weight: '600',
-  display: 'swap',
+  display: 'optional',
   preload: false,
 });
 
@@ -92,8 +92,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${site.name} — AI-Powered Web Developer`,
     description: site.description,
-    creator: '@yourname',
-    site: '@yourname',
+    creator: '@bipinz',
+    site: '@bipinz',
   },
   alternates: {
     canonical: site.url,
@@ -178,10 +178,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <head>
-        {/* Preconnect to critical origins — reduces connection time */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
         {/* RSS / Atom feed — signals editorial authority to Google */}
         <link
           rel="alternate"

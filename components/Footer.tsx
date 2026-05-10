@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Github, Linkedin, Mail, Clock, MapPin, Calendar, MessageCircle } from 'lucide-react';
+import { Linkedin, Mail, Clock, MapPin, Calendar, MessageCircle } from 'lucide-react';
 import { site, getWhatsAppChatUrl } from '@/lib/site';
+import { LogoImage } from '@/components/LogoImage';
 
 export function Footer() {
   const whatsappUrl = getWhatsAppChatUrl();
@@ -11,17 +12,12 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-3">
-              <div className="logo-box">{site.initial}</div>
-              <div>
-                <div className="font-semibold tracking-tight">{site.name}</div>
-                <div className="text-sm text-[var(--muted)]">{site.tagline}</div>
-              </div>
+              <LogoImage />
             </div>
             <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
               AI-powered web platforms for SaaS teams shipping globally.
             </p>
             <div className="mt-5 flex items-center gap-4 text-[var(--muted)]">
-              <a href={site.social.github} target="_blank" rel="noreferrer" className="hover:text-[var(--text)] transition" aria-label="GitHub"><Github className="h-5 w-5" /></a>
               <a href={site.social.linkedin} target="_blank" rel="noreferrer" className="hover:text-[var(--text)] transition" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
               <a href={`mailto:${site.email}`} className="hover:text-[var(--text)] transition" aria-label="Email"><Mail className="h-5 w-5" /></a>
             </div>

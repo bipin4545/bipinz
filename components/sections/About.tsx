@@ -83,22 +83,22 @@ export function About({ priorityPhoto = false }: { priorityPhoto?: boolean }) {
           </div>
 
           <div className="mt-12">
-            <div className="text-xs mono text-[var(--muted)] tracking-widest uppercase mb-4">
+            <div className="text-xs mono text-[var(--muted)] tracking-widest uppercase mb-5">
               Stack I work with
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {SITE_TECH_STACK.map((row) => (
-                <span key={row.label} className="tech-pill">
-                  <span className="flex shrink-0 items-center gap-0.5 text-[var(--text)] opacity-90" aria-hidden>
+                <span key={row.label} className="tech-pill-lg">
+                  <span className="flex shrink-0 items-center gap-1 opacity-90" aria-hidden>
                     {row.lucideLeading === 'sparkles' ? (
-                      <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.75} />
+                      <Sparkles className="h-5 w-5" strokeWidth={1.75} />
                     ) : null}
                     {row.icons.map((icon) => (
                       <svg
                         key={icon.slug}
                         role="img"
                         viewBox="0 0 24 24"
-                        className="h-3.5 w-3.5 sm:h-4 sm:w-4"
+                        className="h-5 w-5"
                       >
                         <path fill="currentColor" d={icon.path} />
                       </svg>
