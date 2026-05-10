@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono, Instrument_Serif, Caveat } from 'next/font/googl
 import { ThemeProvider } from '@wrksz/themes/next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { GlobalUI } from '@/components/GlobalUI';
+import { DeferredGlobalUI } from '@/components/DeferredGlobalUI';
 import { JsonLd } from '@/components/JsonLd';
 import { WebVitals } from '@/components/WebVitals';
 import { site } from '@/lib/site';
@@ -178,6 +178,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <head>
+        {/* DNS prefetch for external services */}
+        <link rel="dns-prefetch" href="https://wa.me" />
+        <link rel="dns-prefetch" href="https://cal.com" />
+        <link rel="preconnect" href="https://cal.com" />
+
         {/* RSS / Atom feed — signals editorial authority to Google */}
         <link
           rel="alternate"
@@ -217,7 +222,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {children}
           </main>
           <Footer />
-          <GlobalUI />
+          <DeferredGlobalUI />
           <WebVitals />
         </ThemeProvider>
       </body>

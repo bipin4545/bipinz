@@ -27,7 +27,9 @@ const nextConfig = {
   reactStrictMode: true,
 
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === 'production'
+      ? { exclude: ['error', 'warn'] }
+      : false,
   },
 
   // Trailing slash convention — pick one. false = /work (no trailing slash).
@@ -68,7 +70,8 @@ const nextConfig = {
 
   // Experimental optimizations
   experimental: {
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: ['lucide-react', 'simple-icons'],
+    inlineCss: true,
   },
 };
 

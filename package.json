@@ -18,6 +18,10 @@
     "react-dom": "^18.3.1",
     "simple-icons": "^16.18.1"
   },
+  "browserslist": {
+    "production": [">0.5%", "not dead", "not op_mini all", "not ie 11"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  },
   "devDependencies": {
     "@types/node": "^20.16.10",
     "@types/react": "^18.3.11",
